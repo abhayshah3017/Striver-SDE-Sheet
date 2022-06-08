@@ -1,32 +1,23 @@
 /Author: Abhay Shah
 //LinkedIn: https://www.linkedin.com/in/abhay-shah07/
 
-//Question: https://leetcode.com/problems/merge-sorted-array/
+//Question: https://www.codingninjas.com/codestudio/problems/1214628?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website
 
-class Solution {
-public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        vector<int> ans;
-        int i=0,j=0;
-        while(i<m & j<n){
-            if(nums1[i]>nums2[j]){
-                ans.push_back(nums2[j]);
-                j++;
-            }
-            else{
-                ans.push_back(nums1[i]);
-                i++;
-            }
+#include <bits/stdc++.h> 
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+	// Write your code here.
+    int i=0,j=0,k=0;
+    while(i<(m+n) && j<n){
+        if(arr1[i]>arr2[j] || k==m){
+            arr1.insert(arr1.begin()+i,arr2[j]);
+            i++;
+            j++;
         }
-        while(i<m){
-                ans.push_back(nums1[i]);
-                i++;
+        else{
+            i++;
+            k++;
         }
-        while(j<n){
-                ans.push_back(nums2[j]);
-                j++;
-        }
-        nums1=ans;
-        
     }
-};
+    arr1.erase(arr1.begin()+m+n,arr1.end());
+    return arr1;
+}
