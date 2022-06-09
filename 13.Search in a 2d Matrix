@@ -1,0 +1,39 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/search-a-2d-matrix/
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& mat, int target) {
+        int i=0,j=0;
+        int m=mat.size(),n=mat[0].size();
+    while(i<m && j<n){
+        if(mat[i][j]==target)
+            return true;
+        else if(mat[i][0]<target){
+            if(i==m-1){
+              for(int j=0;j<n;j++){
+                if(target==mat[i][j])
+                    return true;
+                if(mat[i][j]>target)
+                    return false;
+                } 
+            }
+            i++;
+        }
+        
+        else{
+            i--;
+            for(int j=0;j<n;j++){
+                if(target==mat[i][j])
+                    return true;
+                if(mat[i][j]>target)
+                    return false;
+            }
+            return false;
+        }
+    }
+    return false;
+    }
+};
