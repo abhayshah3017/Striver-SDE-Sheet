@@ -1,0 +1,24 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/find-the-duplicate-number/
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n=nums.size();
+        int slow=0,fast=0;
+        while(1){
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+            if(slow==fast)
+                break;
+        }
+        fast=0;
+        while(fast!=slow){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
+    }
+};
