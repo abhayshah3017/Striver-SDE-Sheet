@@ -1,0 +1,25 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://practice.geeksforgeeks.org/problems/subset-sums2234/1#
+
+class Solution
+{
+public:
+    void solve(int ind,int N,vector<int> &arr,vector<int> &ans,int sum){
+          if(ind==N){
+              ans.push_back(sum);
+              return;
+          } 
+          solve(ind+1,N,arr,ans,sum+arr[ind]);
+          solve(ind+1,N,arr,ans,sum);
+    }
+    
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int> ans;
+        solve(0,N,arr,ans,0);
+        return ans;
+    }
+};
