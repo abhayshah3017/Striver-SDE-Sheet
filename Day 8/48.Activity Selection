@@ -1,0 +1,29 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/1062712?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=0
+
+#include<algorithm>
+
+bool static myComparator(pair<int,int> a,pair<int,int> b){
+    return a.second<b.second;
+}
+
+int maximumActivities(vector<int> &start, vector<int> &finish) {
+    // Write your code here.
+    int ans=0;
+    vector<pair<int,int>> meet;
+    for(int i=0;i<start.size();i++){
+        meet.push_back(make_pair(start[i],finish[i]));
+    }
+    sort(meet.begin(),meet.end(),myComparator);
+    int limit=meet[0].second;
+    ans=1;
+    for(int i=1;i<meet.size();i++){
+        if(meet[i].first>=limit){
+            ans++;
+            limit=meet[i].second;
+        }
+    }
+    return ans;
+}
