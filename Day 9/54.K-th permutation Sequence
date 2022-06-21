@@ -1,0 +1,28 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/permutation-sequence/
+
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        string ans="";
+        k=k-1; //0-based indexing
+        vector<int> temp;
+        int fact=1; //for fact ok n-1
+        for(int i=1;i<n;i++){
+            temp.push_back(i);
+            fact=fact*i;
+        }
+        temp.push_back(n); //temp -> [1,2...,n]
+        while(true){
+            ans = ans + to_string(temp[k/fact]);
+            temp.erase(temp.begin() + k / fact);
+            if(temp.size()==0)
+                break;
+            k=k%fact;
+            fact=fact/temp.size();
+        }
+        return ans;
+    }
+};
