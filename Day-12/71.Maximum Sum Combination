@@ -1,3 +1,8 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/k-max-sum-combinations_975322?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website
+
 #include<bits/stdc++.h>
 
 vector<int> kMaxSumCombination(vector<int> &a, vector<int> &b, int n, int k){
