@@ -1,0 +1,21 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/min-heap_4691801?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=0
+
+#include<bits/stdc++.h>
+
+vector<int> minHeap(int n, vector<vector<int>>& q) {
+    // Write your code here.
+    vector<int> ans;
+    priority_queue<int,vector<int>,greater<int>> minH;
+    for(int i=0;i<n;i++){
+        if(q[i][0]==0)
+            minH.push(q[i][1]);
+        else{
+            ans.push_back(minH.top());
+            minH.pop();
+        }
+    }
+    return ans;
+}
