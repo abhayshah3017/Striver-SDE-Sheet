@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+
+vector<int> kMaxSumCombination(vector<int> &a, vector<int> &b, int n, int k){
+	// Write your code here.
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    priority_queue<pair<int,pair<int,int>>> maxH;  //[a[i]+b[i],[i,j]]
+    vector<int> ans; //a[i]+b[i]
+    set<pair<int,int>> s;   //i,j for visited combinations
+    
+    maxH.push(make_pair(a[n-1]+b[n-1],make_pair(n-1,n-1)));
+    s.insert(make_pair(n-1,n-1));
+    
+    for(int p=0;p<k;p++){
+        auto x=maxH.top();
+        maxH.pop();
+        ans.push_back(x.first);
+        
+        int i=x.second.first;
+        int j=x.second.second;
+        
+        //a[i-1]+b[j]
+        if(i-1<n && i-1>=0 && (s.find(make_pair(i-1,j))==s.end())){
+            maxH.push(make_pair(a[i-1]+b[j],make_pair(i-1,j)));
+            s.insert(make_pair(i-1,j));
+        }
+        
+        //a[i]+b[j-1]
+        if(j-1<n && j-1>=0 && (s.find(make_pair(i,j-1))==s.end())){
+            maxH.push(make_pair(a[i]+b[j-1],make_pair(i,j-1)));
+            s.insert(make_pair(i,j-1));
+        }
+    }
+    
+    return ans;
+}
