@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+
+vector<int> mergeKSortedArrays(vector<vector<int>>&arr, int k)
+{
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> minH; 
+    
+    for(int i=0; i<k; i++)
+    {
+        int first_elem = arr[i][0];
+        minH.push(make_pair(first_elem, make_pair(i, 0)));
+    }
+    
+    vector<int> res;
+    while(!minH.empty())
+    {
+        int elem = minH.top().first;
+        int I = minH.top().second.first;
+        int J = minH.top().second.second;
+        
+        minH.pop();
+        res.push_back(elem);
+        
+        if(J+1 < arr[I].size())
+        {
+            minH.push(make_pair(arr[I][J+1], make_pair(I, J+1)));
+        }
+    }
+    
+    return res;
+}
