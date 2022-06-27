@@ -1,0 +1,62 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/stack-implementation-using-array_3210209
+
+// Stack class.
+class Stack {
+    
+public:
+    int arr[1001];
+    int high=-1;
+    int cap=1001;
+    Stack(int capacity) {
+        // Write your code here.
+        cap=capacity;
+        high=-1;
+    }
+
+    void push(int num) {
+        // Write your code here.
+        if(cap-1>high){
+            high++;
+            arr[high]=num;
+        }
+    }
+
+    int pop() {
+        // Write your code here.
+        if(high>=0){
+            high--;
+            return arr[high+1];
+        }
+        else
+            return -1;
+    }
+    
+    int top() {
+        // Write your code here.
+        if(high>=0){
+            return arr[high];
+        }
+        else
+            return -1;        
+    }
+    
+    int isEmpty() {
+        // Write your code here.
+        if(high<0)
+            return 1;
+        else
+            return 0;
+    }
+    
+    int isFull() {
+        // Write your code here.
+        if(high+1>=cap)
+            return 1;
+        else
+            return 0;
+    }
+    
+};
