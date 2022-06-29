@@ -1,0 +1,80 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/lru-cache/
+
+class Node 
+{ 
+    public:
+    pair<int,int> data; 
+    Node* next; // Pointer to next node in DLL
+    Node* prev; // Pointer to previous node in DLL
+}; 
+
+class LRUCache {
+public:
+    int cap=3000;
+    
+    Node* head=new Node();
+    Node* tail=new Node();
+
+    map<int,Node*> m;
+    
+    LRUCache(int capacity) {
+        cap=capacity;
+        head->next=tail;
+        tail->prev=head;
+        head->data=make_pair(-1,-1);
+        tail->data=make_pair(-1,-1);
+
+    }
+    
+    int get(int key) {
+        if(m.find(key)==m.end())
+            return -1;
+        else{
+            Node *temp=m[key];
+            Node * delprev = temp -> prev;
+            Node * delnext = temp-> next;
+            delprev -> next = delnext;
+            delnext -> prev = delprev;
+            temp->next=head->next;
+            temp->next->prev=temp;
+            head->next=temp;
+            temp->prev=head;
+            return temp->data.second;
+        }
+    }
+    
+    void put(int key, int value) {
+        if(m.find(key)!=m.end()){
+            Node *temp=m[key];
+            Node * delprev = temp -> prev;
+            Node * delnext = temp-> next;
+            delprev -> next = delnext;
+            delnext -> prev = delprev;
+        }
+        else if(m.size()==cap){
+             Node *temp=tail->prev;
+            m.erase(temp->data.first);
+           Node * delprev = temp -> prev;
+            Node * delnext = temp-> next;
+            delprev -> next = delnext;
+            delnext -> prev = delprev;
+        }
+        Node *newNode=new Node();
+        newNode->data=make_pair(key,value);
+        newNode->next=head->next;
+        newNode->next->prev=newNode;
+        head->next=newNode;
+        newNode->prev=head;
+        m[key]=newNode;
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
