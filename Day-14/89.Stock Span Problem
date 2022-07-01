@@ -1,3 +1,8 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/online-stock-span/ 
+
 class StockSpanner {
 public:
     stack<pair<int,int>> s;
