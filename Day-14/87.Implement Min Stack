@@ -1,0 +1,55 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/min-stack/
+
+class MinStack {
+public:
+    stack<long long> s;
+    long long mi=INT_MAX;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        if(s.empty()){
+            s.push(val);
+            mi=val;
+        }
+        else if(val>mi)
+            s.push(val);
+        else{
+            s.push((long long)2*val - mi);
+            mi=val;
+        }
+    }
+    
+    void pop() {
+        if(s.top()>mi)
+            s.pop();
+        else{
+            mi=2*mi - s.top();
+            s.pop();
+        }
+    }
+    
+    int top() {
+        if(s.top()>mi)
+            return s.top();
+        else
+            return mi;
+    }
+    
+    int getMin() {
+        return mi;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
