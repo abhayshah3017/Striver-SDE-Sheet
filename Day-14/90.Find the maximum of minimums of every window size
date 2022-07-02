@@ -1,3 +1,8 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/the-celebrity-problem_982769?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=0
+
 #include<bits/stdc++.h>
 vector<int> maxMinWindow(vector<int> a, int n) {
     // Write your code here.
