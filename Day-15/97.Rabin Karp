@@ -1,0 +1,26 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/repeated-string-match/
+
+class Solution {
+public:
+    int repeatedStringMatch(string a, string b) {
+        string check="";
+        int count=0;
+        if(a==b)
+            return 1;
+        if(b=="")
+            return 0;
+        while(check.length()<b.length()){
+            check+=a;
+            count++;
+        }
+        if(check==b || check.find(b)!=-1)
+            return count;
+        else if((check+a).find(b)!=-1)
+            return count+1;
+        else
+            return -1;
+    }
+};
