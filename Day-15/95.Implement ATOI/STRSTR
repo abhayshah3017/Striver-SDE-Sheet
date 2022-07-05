@@ -1,0 +1,42 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/string-to-integer-atoi/
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        long double ans=0;
+        bool neg=false;
+        bool pos=false;
+        bool digit=false;
+        int IM = 2147483647;
+        int IN = -2147483648;
+        for(int i=0;i<s.length();i++){
+            if(s[i]==' '  && digit==false && neg==false && pos==false)
+                continue;
+            else if(s[i]=='-' && digit==false && neg==false)
+                neg=true;
+            else if(s[i]=='+' && digit==false && pos==false)
+                pos=true;
+            else if(s[i]>='0' && s[i]<='9'){
+               ans=(ans*10)+((int)s[i]-48);
+                digit=true;
+            }
+            else
+                break;
+        }
+        
+        if(neg==true && pos==false)
+            ans=(-1)*ans;
+        if(neg==true && pos==true)
+            return 0;
+        if (ans < IN) {
+            return IN;
+        }
+        if (ans > IM) {
+            return IM;
+        }
+        return ans;
+    }
+};
