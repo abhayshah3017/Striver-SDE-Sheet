@@ -1,0 +1,21 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.interviewbit.com/problems/path-to-given-node/
+
+bool f(TreeNode* root,int B,vector<int> &ans){
+     if(root==NULL)
+        return false;
+     ans.push_back(root->val);
+     if(root->val==B)
+        return true;
+     if( f(root->left,B,ans) || f(root->right,B,ans) )
+        return true;
+     ans.pop_back();
+     return false;
+ }
+vector<int> Solution::solve(TreeNode* A, int B) {
+    vector<int> ans;
+    bool check=f(A,B,ans);
+    return ans;
+}
