@@ -1,0 +1,33 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+
+vector<vector<int>> verticalTraversal(TreeNode* root) {
+        queue<pair<TreeNode*,pair<int,int>>> q;
+        vector<vector<int>> ans;
+        if(root==NULL)
+            return ans;
+        map<int,map<int,multiset<int>>> m;// verticals,level,nodeval
+        q.push({root,{0,0}});
+        while(!q.empty()){
+            auto temp=q.front();
+            q.pop();
+            TreeNode *curr=temp.first;
+            int x=temp.second.first;
+            int y=temp.second.second;
+            m[y][x].insert(curr->val);
+            if(curr->left!=NULL)
+                q.push({curr->left,{x+1,y-1}});
+            if(curr->right!=NULL)
+                q.push({curr->right,{x+1,y+1}});
+        }
+        for(auto x:m){
+            vector<int> vertical;
+            for(auto y:x.second){
+                vertical.insert(vertical.end(),y.second.begin(),y.second.end());
+            }
+            ans.push_back(vertical);
+        }
+        return ans;
+    }
