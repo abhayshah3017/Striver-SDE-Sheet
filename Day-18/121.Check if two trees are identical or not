@@ -1,0 +1,14 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/same-tree/
+
+bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL || q==NULL)
+            return p==q;
+        if(p->val!=q->val)
+            return false;
+        else{
+            return isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+        }
+}
