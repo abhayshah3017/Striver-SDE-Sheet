@@ -1,0 +1,17 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/symmetric-tree/
+
+bool check(TreeNode* root1,TreeNode* root2){
+        if(root1==NULL || root2==NULL)
+            return root1==root2;
+        if(root1->val!=root2->val)
+            return false;
+        return check(root1->left,root2->right) && check(root1->right,root2->left);
+    }
+    bool isSymmetric(TreeNode* root) {
+        if(root==NULL)
+            return true;
+        return check(root->left,root->right);
+}
