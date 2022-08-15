@@ -1,0 +1,21 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+
+void flatten(TreeNode* root) {
+        TreeNode* curr=root;
+        while(curr!=NULL){
+            if(curr->left!=NULL){
+                TreeNode* prev=curr->left;
+                while(prev->right!=NULL){
+                    prev=prev->right;
+                }
+                prev->right=curr->right;
+                curr->right=curr->left;
+                curr->left=NULL;
+            }
+            curr=curr->right;
+        }
+        
+}
