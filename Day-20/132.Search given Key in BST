@@ -1,0 +1,17 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/search-in-a-binary-search-tree/
+
+TreeNode* searchBST(TreeNode* root, int val) {
+        TreeNode* curr=root;
+        while(curr!=NULL){
+            if(curr->val == val)
+                return curr;
+            else if(curr->val > val)
+                curr=curr->left;
+            else
+                curr=curr->right;
+        }
+        return curr;
+}
