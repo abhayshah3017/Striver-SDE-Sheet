@@ -1,0 +1,20 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/floor-from-bst_920457?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos&leftPanelTab=0
+
+int floorInBST(TreeNode<int> * root, int X)
+{
+    // Write your code here.
+    TreeNode<int>* curr=root;
+    TreeNode<int>* pre=NULL;
+    while(curr!=NULL){
+        if(curr->val <= X){
+            pre=curr;
+            curr=curr->right;
+        }
+        else
+            curr=curr->left;
+    }
+    return pre->val;
+}
