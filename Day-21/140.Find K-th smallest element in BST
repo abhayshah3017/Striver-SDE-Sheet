@@ -1,0 +1,24 @@
+/Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+
+void f(TreeNode* root,int k,int &count,int &answer){
+        if(root==NULL)
+            return;
+        f(root->left,k,count,answer);
+        if(count==k){
+            answer=root->val;
+            count++;
+            return;
+        }
+        count++;
+        f(root->right,k,count,answer);
+        return;
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        int count=1;
+        int answer=-1;
+        f(root,k,count,answer);
+        return answer;
+    }
