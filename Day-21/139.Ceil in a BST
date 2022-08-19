@@ -1,0 +1,24 @@
+//Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://www.codingninjas.com/codestudio/problems/ceil-from-bst_920464?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos&leftPanelTab=0
+
+int findCeil(BinaryTreeNode<int> *node, int key){
+    // Write your code here.
+    BinaryTreeNode<int>* curr=node;
+    BinaryTreeNode<int>* suc=NULL;
+    while(curr!=NULL){
+        if(curr->data < key){
+            curr=curr->right;
+        }
+        else if(curr->data == key){
+            suc=curr;
+            break;
+        }
+        else{
+            suc=curr;
+            curr=curr->left;
+        }
+    }
+    return (suc==NULL)?-1:suc->data;
+}
