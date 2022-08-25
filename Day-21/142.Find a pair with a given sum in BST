@@ -1,0 +1,20 @@
+/Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+
+bool findTarget(TreeNode* root, int k) {
+        set<int> s;
+        return find(root,s,k);
+}
+bool find(TreeNode* root,set<int> &s,int k){
+        if(root==NULL)
+            return false;
+        bool a=find(root->left,s,k);
+        if(s.count(k-root->val))
+            return true;
+        else
+            s.insert(root->val);
+        bool b=find(root->right,s,k);
+        return a||b;
+}
