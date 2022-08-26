@@ -1,0 +1,31 @@
+/Author: Abhay Shah
+//LinkedIn: https://www.linkedin.com/in/abhay-shah07/
+
+//Question: https://leetcode.com/problems/binary-search-tree-iterator/
+
+class BSTIterator {
+private: 
+    stack<TreeNode*> s;
+    void pushAll(TreeNode* root){
+        for(;root!=NULL;root=root->left)
+            s.push(root);
+    } 
+public:
+    BSTIterator(TreeNode* root) {
+        pushAll(root);
+    }
+    
+    int next() {
+        TreeNode *t=s.top();
+        s.pop();
+        pushAll(t->right);
+        return t->val;
+    }
+    
+    bool hasNext() {
+        if(s.empty())
+            return false;
+        else
+            return true;
+    }
+};
